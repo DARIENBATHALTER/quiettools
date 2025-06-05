@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WASABI - Student Analytics Platform | QuietTools</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #2c3e50;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+        }
+        
+        .super-title {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #10b981;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .hero-heading {
+            font-size: 4rem;
+            line-height: 1.2;
+            margin: 0.5rem 0 1.5rem;
+        }
+        
+        .section-heading {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-heading {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        .lead-text {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            font-weight: 300;
+            max-width: 800px;
+            margin-bottom: 2rem;
+        }
+        
+        .body-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            max-width: 800px;
+        }
+        
+        /* Close Button */
+        .close-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--color-primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .close-button:hover {
+            background: var(--color-secondary);
+            transform: scale(1.1);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(120deg, #f8f9fa 60%, #e6f7f1 100%);
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+            transform: perspective(1000px) rotateY(-5deg);
+            margin: 0 auto;
+            display: block;
+        }
+        
+        /* Feature Sections */
+        .feature-section {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .feature-section:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            color: #10b981;
+            margin-bottom: 20px;
+        }
+        
+        /* Showcase Section */
+        .showcase-section {
+            padding: 100px 0;
+        }
+        
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .showcase-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .showcase-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .showcase-item img {
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.5s ease;
+            margin: 0 auto;
+            display: block;
+        }
+        
+        .showcase-item:hover img {
+            transform: scale(1.03);
+        }
+        
+        .showcase-caption {
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #5e7a7a;
+        }
+        
+        /* Video Section */
+        .video-section {
+            background: linear-gradient(150deg, #2c3e50, #4a6572);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .video-section h2 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        
+        .video-container video {
+            width: 100%;
+            display: block;
+            border-radius: 12px;
+        }
+        
+        /* Testimonial Section */
+        .testimonial-section {
+            padding: 100px 0;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+        
+        .testimonial {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-text {
+            font-size: 1.3rem;
+            line-height: 1.7;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: #10b981;
+        }
+        
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: #5e7a7a;
+        }
+        
+        /* Call To Action */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(120deg, #10b981, #0d9668);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-heading {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .cta-text {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #10b981;
+            font-weight: 600;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        /* Footer */
+        .product-footer {
+            background: #2c3e50;
+            color: rgba(255,255,255,0.8);
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-heading {
+                font-size: 3rem;
+            }
+            
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .lead-text, .body-text {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .hero-image {
+                max-width: 80%;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 0 60px;
+            }
+            
+            .hero-heading {
+                font-size: 2.5rem;
+            }
+            
+            .section-heading {
+                font-size: 2rem;
+            }
+            
+            .feature-section, .showcase-section, .testimonial-section, .cta-section {
+                padding: 60px 0;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .testimonial {
+                padding: 30px 20px;
+            }
+            
+            .testimonial-text {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="close-button" title="Close Tab" onclick="window.close()">
+        <i class="fas fa-times"></i>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="super-title">Student Analytics Platform</div>
+                    <h1 class="hero-heading">WASABI</h1>
+                    <p class="lead-text">Transform raw student data into actionable insights with this comprehensive analytics platform built specifically for educators.</p>
+                    <p class="body-text">The Wide Array Student Analytics and Benchmarking Interface (WASABI) helps school administrators track academic progress, attendance patterns, and intervention needs across diverse educational ecosystems.</p>
+                </div>
+                <div class="hero-image-container">
+                    <img src="../images/StudentAnalytics1.png" alt="WASABI Dashboard" class="hero-image">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Key Features Section -->
+    <section class="feature-section">
+        <div class="container">
+            <h2 class="section-heading">Key Features</h2>
+            <p class="lead-text">WASABI makes complex student data accessible and actionable.</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-heading">Comprehensive Analytics</h3>
+                    <p>Track student performance across multiple metrics with intuitive dashboards and reports that make patterns visible at a glance.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <h3 class="feature-heading">Attendance Tracking</h3>
+                    <p>Monitor attendance patterns and identify at-risk students before problems escalate. Set automatic alerts for concerning trends.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="feature-heading">Professional Development Insights</h3>
+                    <p>Track what works and what doesn't with WASABI's companion app, SOBA, for taking real-time classroom observation data and delivering targeted feedback on student engagement to teachers.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3 class="feature-heading">Customizable Grade Level and Class Analytics Dashboards</h3>
+                    <p>Create tailored views for different grade levels and classes, allowing administrators to focus on the metrics that matter most for each group.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-export"></i>
+                    </div>
+                    <h3 class="feature-heading">Customizable and Exportable Student Reports</h3>
+                    <p>Generate detailed reports for individual students or groups, with flexible formatting options for sharing with parents, teachers, and administrators.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3 class="feature-heading">Intervention Management</h3>
+                    <p>Plan, document, and track interventions for struggling students. See what works and coordinate support across teaching teams.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-heading">FERPA Compliant</h3>
+                    <p>Built with privacy and security in mind. All student data is protected according to federal education privacy standards.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Screenshots Showcase -->
+    <section class="showcase-section">
+        <div class="container">
+            <h2 class="section-heading">WASABI in Action</h2>
+            <p class="lead-text">See how WASABI transforms the way educators work with student data.</p>
+            
+            <div class="showcase-grid">
+                <div class="showcase-item">
+                    <img src="../images/StudentAnalytics1.png" alt="WASABI Dashboard" onclick="window.open(this.src, '_blank')">
+                    <div class="showcase-caption">Main dashboard with key performance indicators</div>
+                </div>
+                
+                <div class="showcase-item">
+                    <img src="../images/StudentAnalytics2.png" alt="Student Progress Tracking" onclick="window.open(this.src, '_blank')">
+                    <div class="showcase-caption">Detailed student progress tracking over time</div>
+                </div>
+                
+                <div class="showcase-item">
+                    <img src="../images/StudentAnalytics3.png" alt="Attendance Patterns" onclick="window.open(this.src, '_blank')">
+                    <div class="showcase-caption">Attendance pattern analysis with visual indicators</div>
+                </div>
+                
+                <div class="showcase-item">
+                    <img src="../images/StudentAnalytics4.png" alt="Intervention Tracking" onclick="window.open(this.src, '_blank')">
+                    <div class="showcase-caption">Intervention planning and outcome tracking</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Video Demo Section -->
+    <section class="video-section">
+        <div class="container">
+            <h2 class="section-heading">See WASABI in Motion</h2>
+            
+            <div class="video-container">
+                <video controls>
+                    <source src="../images/WASABIsnippet.mov" type="video/quicktime">
+                    <source src="../images/WASABIsnippet.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonial Section -->
+    <section class="testimonial-section">
+        <div class="container">
+            <h2 class="section-heading">What Educators Say</h2>
+            
+            <div class="testimonial">
+                <p class="testimonial-text">"WASABI has completely transformed how we approach student support at our charter school. We can now instantly see which students need intervention and track the effectiveness of our programs. It's saved us countless hours of administrative work."</p>
+                <div class="testimonial-author">Marla Almon</div>
+                <div class="testimonial-role">Principal, Wayman Academy</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-heading">Ready to transform your school's data?</h2>
+            <p class="cta-text">Discover how WASABI can help your institution make more informed decisions about student support and academic planning.</p>
+            <a href="../index.html#contact" class="cta-button">Contact Us</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="product-footer">
+        <div class="container">
+            <p>WASABI is a QuietTools project by Darien Bathalter</p>
+            <p>&copy; 2025 QuietTools • <a href="../index.html" style="color: #f4c430; text-decoration: none;">Back to QuietTools</a></p>
+        </div>
+    </footer>
+</body>
+</html>

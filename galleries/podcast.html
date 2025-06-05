@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Re-Viewer - Podcast Review Analytics | QuietTools</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #2c3e50;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+        }
+        
+        .super-title {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #8b5cf6;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .hero-heading {
+            font-size: 4rem;
+            line-height: 1.2;
+            margin: 0.5rem 0 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .hero-logo {
+            font-size: 4rem;
+            color: #8b5cf6;
+        }
+        
+        .section-heading {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-heading {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        .lead-text {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            font-weight: 300;
+            max-width: 800px;
+            margin-bottom: 2rem;
+        }
+        
+        .body-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            max-width: 800px;
+        }
+        
+        /* Close Button */
+        .close-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--color-primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .close-button:hover {
+            background: var(--color-secondary);
+            transform: scale(1.1);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(120deg, #f8f9fa 60%, #f3e8ff 100%);
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+            transform: perspective(1000px) rotateY(-5deg);
+            margin: 0 auto;
+            display: block;
+        }
+        
+        /* Feature Sections */
+        .feature-section {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .feature-section:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            color: #8b5cf6;
+            margin-bottom: 20px;
+        }
+        
+        /* Showcase Section */
+        .showcase-section {
+            padding: 100px 0;
+        }
+        
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .showcase-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .showcase-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .showcase-item img {
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.5s ease;
+            margin: 0 auto;
+            display: block;
+        }
+        
+        .showcase-item:hover img {
+            transform: scale(1.03);
+        }
+        
+        .showcase-caption {
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+        
+        /* Testimonial Section */
+        .testimonial-section {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .testimonial {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .testimonial-text {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .testimonial-role {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: #2c3e50;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .cta-heading {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-text {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #8b5cf6;
+            font-weight: 600;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        /* Footer */
+        .product-footer {
+            background: #2c3e50;
+            color: rgba(255,255,255,0.8);
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-heading {
+                font-size: 3rem;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .hero-logo {
+                font-size: 3rem;
+            }
+            
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .lead-text, .body-text {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .hero-image {
+                max-width: 80%;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 0 60px;
+            }
+            
+            .hero-heading {
+                font-size: 2.5rem;
+            }
+            
+            .hero-logo {
+                font-size: 2.5rem;
+            }
+            
+            .section-heading {
+                font-size: 2rem;
+            }
+            
+            .feature-section, .showcase-section, .testimonial-section, .cta-section {
+                padding: 60px 0;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .testimonial {
+                padding: 30px 20px;
+            }
+            
+            .testimonial-text {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="close-button" title="Close Tab" onclick="window.close()">
+        <i class="fas fa-times"></i>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="super-title">Podcast Review Analytics</div>
+                    <h1 class="hero-heading">
+                        <i class="fas fa-clock-rotate-left hero-logo"></i>
+                        Re-Viewer
+                    </h1>
+                    <p class="lead-text">Create simulated screenshots from comments instantly. Unlock powerful insights from your podcast reviews and feedback.</p>
+                    <p class="body-text">Re-Viewer does a few things well: it scrapes all comments from Apple Podcast, includes advanced review sort/filtering, keyword insights, and export in a variety of realistic screenshot simulations.</p>
+                </div>
+                <div class="hero-image-container">
+                    <img src="../images/PodcastReviewVisualizer1.png" alt="Re-Viewer Dashboard" class="hero-image">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Key Features Section -->
+    <section class="feature-section">
+        <div class="container">
+            <h2 class="section-heading">Key Features</h2>
+            <p class="lead-text">Everything you need to understand and showcase your podcast reviews.</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h3 class="feature-heading">Apple Podcast Scraping</h3>
+                    <p>Automatically scrapes all reviews and comments from Apple Podcasts for comprehensive analysis of your show's feedback.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-filter"></i>
+                    </div>
+                    <h3 class="feature-heading">Advanced Review Filtering</h3>
+                    <p>Sort and filter reviews by rating, date, keyword, sentiment, and more to find exactly the feedback you're looking for.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="feature-heading">Keyword Insights</h3>
+                    <p>Identify trending topics and common themes in your reviews with powerful keyword analysis to understand what listeners love most.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="feature-heading">Screenshot Simulations</h3>
+                    <p>Export reviews in a variety of realistic screenshot formats including simulated iPhone screenshots and macOS screenshots for content creation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Screenshots Showcase -->
+    <section class="showcase-section">
+        <div class="container">
+            <h2 class="section-heading">Re-Viewer in Action</h2>
+            <p class="lead-text">See how Re-Viewer transforms podcast review analysis.</p>
+            
+            <div class="showcase-grid">
+                <div class="showcase-item">
+                    <img src="../images/PodcastReviewVisualizer1.png" alt="Re-Viewer Analytics Dashboard" onclick="window.open(this.src, '_blank')">
+                    <div class="showcase-caption">Review analytics dashboard with filtering options</div>
+                </div>
+                
+                <div class="showcase-item">
+                    <img src="../images/PodcastReviewVisualizer2.png" alt="Re-Viewer Sentiment Analysis" onclick="window.open(this.src, '_blank')">
+                    <div class="showcase-caption">Sentiment analysis and keyword insights</div>
+                </div>
+                
+                <div class="showcase-item">
+                    <img src="../images/PodcastReviewVisualizer3.png" alt="Re-Viewer Topic Clustering" onclick="window.open(this.src, '_blank')">
+                    <div class="showcase-caption">Topic clustering and trend identification</div>
+                </div>
+                
+                <div class="showcase-item">
+                    <img src="../images/PodcastReviewVisualizerDesktopLight.png" alt="Re-Viewer Desktop Light Theme" onclick="window.open(this.src, '_blank')">
+                    <div class="showcase-caption">Desktop interface with light theme</div>
+                </div>
+                
+                <div class="showcase-item">
+                    <img src="../images/PodcastReviewVisualizerDesktopDark.png" alt="Re-Viewer Desktop Dark Theme" onclick="window.open(this.src, '_blank')">
+                    <div class="showcase-caption">Desktop interface with dark theme</div>
+                </div>
+                
+                <div class="showcase-item">
+                    <img src="../images/PodcastReviewVisualizerIphoneLight.png" alt="Re-Viewer iPhone Light Theme" onclick="window.open(this.src, '_blank')">
+                    <div class="showcase-caption">Simulated iPhone screenshot export - light theme</div>
+                </div>
+                
+                <div class="showcase-item">
+                    <img src="../images/PodcastReviewVisualizerIphoneDark.png" alt="Re-Viewer iPhone Dark Theme" onclick="window.open(this.src, '_blank')">
+                    <div class="showcase-caption">Simulated iPhone screenshot export - dark theme</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonial Section -->
+    <section class="testimonial-section">
+        <div class="container">
+            <h2 class="section-heading">What Podcasters Say</h2>
+            
+            <div class="testimonial">
+                <p class="testimonial-text">"Re-Viewer has been a game-changer for understanding my audience feedback. The ability to filter through hundreds of Apple Podcast reviews and export them as realistic screenshots for my social media has saved me countless hours. The keyword insights helped me discover what topics resonate most with my listeners."</p>
+                <div class="testimonial-author">Maria Santos</div>
+                <div class="testimonial-role">Host, The Creative Entrepreneur Podcast</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-heading">Ready to unlock your review insights?</h2>
+            <p class="cta-text">Discover what your listeners are really saying and turn their feedback into powerful content for your podcast marketing.</p>
+            <a href="../index.html#contact" class="cta-button">Contact Us</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="product-footer">
+        <div class="container">
+            <p>Re-Viewer is a QuietTools project by Darien Bathalter</p>
+            <p>&copy; 2025 QuietTools • <a href="../index.html" style="color: #f4c430; text-decoration: none;">Back to QuietTools</a></p>
+        </div>
+    </footer>
+</body>
+</html> 

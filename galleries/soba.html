@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOBA - Student Observation Based Analytics | QuietTools</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #2c3e50;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+        }
+        
+        .super-title {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .hero-heading {
+            font-size: 4rem;
+            line-height: 1.2;
+            margin: 0.5rem 0 1.5rem;
+        }
+        
+        .section-heading {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-heading {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        .lead-text {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            font-weight: 300;
+            max-width: 800px;
+            margin-bottom: 2rem;
+        }
+        
+        .body-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            max-width: 800px;
+        }
+        
+        /* Close Button */
+        .close-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--color-primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .close-button:hover {
+            background: var(--color-secondary);
+            transform: scale(1.1);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(120deg, #f8f9fa 60%, #dbeafe 100%);
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+            transform: perspective(1000px) rotateY(-5deg);
+            margin: 0 auto;
+            display: block;
+        }
+        
+        .soba-logo {
+            height: 60px;
+            width: auto;
+            margin-right: 15px;
+        }
+        
+        /* Feature Sections */
+        .feature-section {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .feature-section:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            color: #3b82f6;
+            margin-bottom: 20px;
+        }
+        
+        /* Process Section */
+        .process-section {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #3b82f6;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+        
+        .process-steps .process-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            right: -15px;
+            width: 30px;
+            height: 2px;
+            background: #3b82f6;
+            display: none;
+        }
+        
+        @media (min-width: 992px) {
+            .process-steps .process-step:not(:last-child)::after {
+                display: block;
+            }
+        }
+        
+        /* Showcase Section */
+        .showcase-section {
+            padding: 100px 0;
+        }
+        
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .showcase-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .showcase-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .showcase-item img {
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.5s ease;
+        }
+        
+        .showcase-item:hover img {
+            transform: scale(1.03);
+        }
+        
+        .showcase-caption {
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #5e7a7a;
+        }
+        
+        /* Integration Section */
+        .integration-section {
+            padding: 100px 0;
+            background: white;
+            text-align: center;
+        }
+        
+        .integration-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            position: relative;
+            margin-top: 60px;
+        }
+        
+        .integration-container::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: #3b82f6;
+            border-radius: 50%;
+        }
+        
+        .integration-container::after {
+            content: '+';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .integration-text {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        /* Testimonial Section */
+        .testimonial-section {
+            padding: 100px 0;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+        
+        .testimonial {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-text {
+            font-size: 1.3rem;
+            line-height: 1.7;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: #3b82f6;
+        }
+        
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: #5e7a7a;
+        }
+        
+        /* Call To Action */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(120deg, #3b82f6, #2563eb);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-heading {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .cta-text {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #3b82f6;
+            font-weight: 600;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        /* Footer */
+        .product-footer {
+            background: #2c3e50;
+            color: rgba(255,255,255,0.8);
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-heading {
+                font-size: 3rem;
+            }
+            
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .lead-text, .body-text {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .hero-image {
+                max-width: 80%;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 0 60px;
+            }
+            
+            .hero-heading {
+                font-size: 2.5rem;
+            }
+            
+            .section-heading {
+                font-size: 2rem;
+            }
+            
+            .feature-section, .process-section, .showcase-section, .integration-section, .testimonial-section, .cta-section {
+                padding: 60px 0;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .testimonial {
+                padding: 30px 20px;
+            }
+            
+            .testimonial-text {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="close-button" title="Close Tab" onclick="window.close()">
+        <i class="fas fa-times"></i>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="super-title">Student Observation Based Analytics</div>
+                    <h1 class="hero-heading">
+                        <img src="../images/sobalogo.png" alt="SOBA Logo" class="soba-logo">
+                        SOBA
+                    </h1>
+                    <p class="lead-text">Streamline classroom observations and professional development for educators.</p>
+                    <p class="body-text">SOBA transforms how administrators and instructional coaches observe, evaluate, and support teachers. Replace paper-based systems with intuitive digital workflows that save hours of administrative time.</p>
+                </div>
+                <div class="hero-image-container">
+                    <img src="../images/ClassroomObservation1.png" alt="SOBA Dashboard" class="hero-image">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Key Features Section -->
+    <section class="feature-section">
+        <div class="container">
+            <h2 class="section-heading">Key Features</h2>
+            <p class="lead-text">SOBA elevates teacher evaluation to a growth-oriented experience.</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tablet-alt"></i>
+                    </div>
+                    <h3 class="feature-heading">Laptop or Touch Friendly</h3>
+                    <p>Take digital notes during observations with intuitive touch-based forms designed for tablets and mobile devices. No more paper shuffling or post-observation transcription.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3 class="feature-heading">Growth Tracking</h3>
+                    <p>Give prompt and specific feedback to educators, and keep track of what works. Monitor teacher development over time with visual progress indicators. Identify growth patterns and celebrate improvement with concrete data.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="feature-heading">Trend Analysis</h3>
+                    <p>Identify school-wide patterns and professional development needs with powerful analytics that reveal strengths and opportunities across your faculty.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3 class="feature-heading">Custom Frameworks</h3>
+                    <p>Adapt SOBA to any teaching framework or rubric your school uses, from Danielson to Marzano or your own custom evaluation criteria.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Observation Process Section -->
+    <section class="process-section">
+        <div class="container">
+            <h2 class="section-heading">Streamlined Observation Process</h2>
+            <p class="lead-text">SOBA simplifies every step of the classroom observation workflow.</p>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Schedule</h3>
+                    <p>Easily plan observations with calendar integration and automated teacher notifications.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Observe</h3>
+                    <p>Capture evidence during observations with the intuitive touch interface.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Feedback</h3>
+                    <p>Share observations and recommendations with teachers instantly.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Track</h3>
+                    <p>Monitor progress over time and analyze growth trends.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Screenshots Showcase -->
+    <section class="showcase-section">
+        <div class="container">
+            <h2 class="section-heading">SOBA in Action</h2>
+            <p class="lead-text">See how SOBA transforms the classroom observation experience.</p>
+            
+            <div class="showcase-grid">
+                <div class="showcase-item">
+                    <img src="../images/ClassroomObservation1.png" alt="SOBA Observation Form" onclick="window.open(this.src, '_blank')">
+                    <div class="showcase-caption">Touch-optimized observation forms</div>
+                </div>
+                
+                <div class="showcase-item">
+                    <img src="../images/ClassroomObservation2.png" alt="Teacher Performance Dashboard" onclick="window.open(this.src, '_blank')">
+                    <div class="showcase-caption">Teacher performance dashboard</div>
+                </div>
+                
+                <div class="showcase-item">
+                    <img src="../images/ClassroomObservation3.png" alt="Professional Development Insights" onclick="window.open(this.src, '_blank')">
+                    <div class="showcase-caption">Professional development insights</div>
+                </div>
+                
+                <div class="showcase-item">
+                    <img src="../images/ClassroomObservation4.png" alt="Growth Analytics" onclick="window.open(this.src, '_blank')">
+                    <div class="showcase-caption">Teacher growth analytics</div>
+                </div>
+                
+                <div class="showcase-item">
+                    <img src="../images/ClassroomObservation5.png" alt="Trend Analysis" onclick="window.open(this.src, '_blank')">
+                    <div class="showcase-caption">School-wide trend analysis</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    
+    <!-- Testimonial Section -->
+    <section class="testimonial-section">
+        <div class="container">
+            <h2 class="section-heading">What School Leaders Say</h2>
+            
+            <div class="testimonial">
+                <p class="testimonial-text">"Before SOBA, our observation process was cumbersome and disconnected. Now, we've cut administrative time by 70% and our teachers receive feedback within hours instead of days. The growth tracking features have transformed our professional development approach."</p>
+                <div class="testimonial-author">Martin Carter</div>
+                <div class="testimonial-role">Wayman Academy</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-heading">Elevate your teacher development process</h2>
+            <p class="cta-text">Discover how SOBA can transform classroom observations from evaluation to meaningful professional growth at your school.</p>
+            <a href="../index.html#contact" class="cta-button">Contact Us</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="product-footer">
+        <div class="container">
+            <p>SOBA is a QuietTools project by Darien Bathalter</p>
+            <p>&copy; 2025 QuietTools • <a href="../index.html" style="color: #f4c430; text-decoration: none;">Back to QuietTools</a></p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "name": "quiettools-landing",
+  "version": "1.0.0",
+  "description": "Premium landing page for QuietTools - turning messy data into meaning",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python3 -m http.server 3000",
+    "serve": "python3 -m http.server 8000",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "landing-page",
+    "data-tools",
+    "custom-software",
+    "analytics",
+    "education-tech"
+  ],
+  "author": "Darien Bathalter",
+  "license": "MIT",
+  "homepage": "https://quiettools.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/quiettools-landing"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+} 

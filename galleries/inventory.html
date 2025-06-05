@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MISO - Smart Inventory Scanner | QuietTools</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #2c3e50;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+        }
+        
+        .super-title {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #ef4444;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .hero-heading {
+            font-size: 4rem;
+            line-height: 1.2;
+            margin: 0.5rem 0 1.5rem;
+        }
+        
+        .section-heading {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-heading {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        .lead-text {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            font-weight: 300;
+            max-width: 800px;
+            margin-bottom: 2rem;
+        }
+        
+        .body-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            max-width: 800px;
+        }
+        
+        /* Close Button */
+        .close-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--color-primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .close-button:hover {
+            background: var(--color-secondary);
+            transform: scale(1.1);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(120deg, #f8f9fa 60%, #fdecec 100%);
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .hero-image {
+            width: 50%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+            transform: perspective(1000px) rotateY(-5deg);
+            margin: 0 auto;
+            display: block;
+        }
+        
+        /* Feature Sections */
+        .feature-section {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .feature-section:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            color: #ef4444;
+            margin-bottom: 20px;
+        }
+        
+        /* Use Cases */
+        .use-case-section {
+            padding: 100px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .use-case-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-top: 60px;
+        }
+        
+        .use-case-container:nth-child(even) {
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .use-case-content {
+            max-width: 100%;
+        }
+        
+        .use-case-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .use-case-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #5e7a7a;
+        }
+        
+        .use-case-image {
+            width: 50%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: transform 0.5s ease;
+            margin: 0 auto;
+            display: block;
+        }
+        
+        .use-case-image:hover {
+            transform: translateY(-10px);
+        }
+        
+        /* Showcase Section */
+        .showcase-section {
+            padding: 100px 0;
+        }
+        
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .showcase-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .showcase-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .showcase-item img {
+            width: 50%;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.5s ease;
+            margin: 0 auto;
+            display: block;
+        }
+        
+        .showcase-item:hover img {
+            transform: scale(1.03);
+        }
+        
+        .showcase-caption {
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #5e7a7a;
+        }
+        
+        /* Video Section */
+        .video-section {
+            background: linear-gradient(150deg, #2c3e50, #c53030);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .video-section h2 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        
+        .video-container video {
+            width: 100%;
+            display: block;
+            border-radius: 12px;
+        }
+        
+        /* Testimonial Section */
+        .testimonial-section {
+            padding: 100px 0;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+        
+        .testimonial {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-text {
+            font-size: 1.3rem;
+            line-height: 1.7;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: #ef4444;
+        }
+        
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: #5e7a7a;
+        }
+        
+        /* Call To Action */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(120deg, #ef4444, #c53030);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-heading {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .cta-text {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #ef4444;
+            font-weight: 600;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        /* Footer */
+        .product-footer {
+            background: #2c3e50;
+            color: rgba(255,255,255,0.8);
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-heading {
+                font-size: 3rem;
+            }
+            
+            .hero-content, .use-case-container, .use-case-container:nth-child(even) {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .lead-text, .body-text {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .hero-image, .use-case-image {
+                max-width: 80%;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 0 60px;
+            }
+            
+            .hero-heading {
+                font-size: 2.5rem;
+            }
+            
+            .section-heading {
+                font-size: 2rem;
+            }
+            
+            .feature-section, .use-case-section, .showcase-section, .testimonial-section, .cta-section {
+                padding: 60px 0;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .testimonial {
+                padding: 30px 20px;
+            }
+            
+            .testimonial-text {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="close-button" title="Close Tab" onclick="window.close()">
+        <i class="fas fa-times"></i>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="super-title">Mobile Inventory Scanner</div>
+                    <h1 class="hero-heading">MISO</h1>
+                    <p class="lead-text">Turn any smartphone into a powerful inventory management system with zero complexity.</p>
+                    <p class="body-text">The Mobile Inventory Scanner & Organizer (MISO) transforms how schools, small businesses, and organizations manage their assets and inventory with professional-grade features in an intuitive mobile experience.</p>
+                </div>
+                <div class="hero-image-container">
+                    <video controls autoplay loop muted class="hero-image" style="width: 100%; max-width: 300px; margin: 0 auto; display: block;">
+                        <source src="../images/MISOsnippet.mov" type="video/quicktime">
+                        <source src="../images/MISOsnippet.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Key Features Section -->
+    <section class="feature-section">
+        <div class="container">
+            <h2 class="section-heading">Key Features</h2>
+            <p class="lead-text">Professional inventory management without enterprise complexity.</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-barcode"></i>
+                    </div>
+                    <h3 class="feature-heading">Smart Barcode Scanning</h3>
+                    <p>Instantly scan any standard barcode or QR code using your smartphone camera. No additional hardware required.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3 class="feature-heading">Real-Time Updates</h3>
+                    <p>Synchronize inventory data across all devices in real-time. Never deal with conflicting information or outdated records again.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="feature-heading">In-Depth Asset Management</h3>
+                    <p>Supports multiple custom label formats, and metadata for electronic devices, like make model condition OS serial and user assignment.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3 class="feature-heading">Automated Alerts</h3>
+                    <p>Get notified when inventory drops below custom thresholds or when items approach expiration dates.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3 class="feature-heading">Usage Analytics</h3>
+                    <p>Track consumption patterns, identify trends, and optimize your ordering process with built-in analytics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Use Cases Section -->
+    <section class="use-case-section">
+        <div class="container">
+            <h2 class="section-heading">Who Uses MISO</h2>
+            <p class="lead-text">Perfect for organizations that need professional inventory tracking without enterprise complexity.</p>
+            
+            <div class="use-case-container">
+                <div class="use-case-content">
+                    <h3 class="use-case-title">K-12 Schools of All Sizes</h3>
+                    <p class="use-case-text">From IT equipment to classroom supplies, MISO helps schools track their assets and manage resource allocation efficiently. Easily manage textbooks, technology, and equipment with a simple scanning system that staff can learn in minutes.</p>
+                </div>
+                <img src="../images/InventoryScanner2.jpeg" alt="School Inventory Management" class="use-case-image">
+            </div>
+            
+            <div class="use-case-container">
+                <img src="../images/InventoryScanner3.jpeg" alt="Small Business Inventory" class="use-case-image">
+                <div class="use-case-content">
+                    <h3 class="use-case-title">Small Businesses</h3>
+                    <p class="use-case-text">Retail shops, restaurants, and service businesses use MISO to manage inventory without the overhead of complex systems. Keep track of stock levels, automate reordering, and understand your inventory flow with intuitive analytics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Screenshots Showcase -->
+    <section class="showcase-section">
+        <div class="container">
+            <h2 class="section-heading">MISO in Action</h2>
+            <p class="lead-text">See how MISO simplifies inventory management.</p>
+            
+            <div class="showcase-grid">
+                <div class="showcase-item">
+                    <img src="../images/InventoryScanner1.jpeg" alt="MISO Main Interface" onclick="window.open(this.src, '_blank')">
+                    <div class="showcase-caption">Main scanner interface with quick-access actions</div>
+                </div>
+                
+                <div class="showcase-item">
+                    <img src="../images/InventoryScanner2.jpeg" alt="Barcode Scanning" onclick="window.open(this.src, '_blank')">
+                    <div class="showcase-caption">Barcode scanning with real-time information overlay</div>
+                </div>
+                
+                <div class="showcase-item">
+                    <img src="../images/InventoryScanner3.jpeg" alt="Inventory Dashboard" onclick="window.open(this.src, '_blank')">
+                    <div class="showcase-caption">Inventory dashboard with status indicators</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonial Section -->
+    <section class="testimonial-section">
+        <div class="container">
+            <h2 class="section-heading">What Users Say</h2>
+            
+            <div class="testimonial">
+                <p class="testimonial-text">"MISO has revolutionized how we track equipment in our school. Our annual inventory process used to take a week and multiple staff members. Now it's done in a day or two with just one person. The mobile scanning feature alone has saved us countless hours."</p>
+                <div class="testimonial-author">Jay Wilson</div>
+                <div class="testimonial-role">K-12 IT Service Contractor in Duval County</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-heading">Ready to simplify your inventory management?</h2>
+            <p class="cta-text">Discover how MISO can help your organization track assets and inventory with professional tools that don't require an IT department to manage.</p>
+            <a href="../index.html#contact" class="cta-button">Contact Us</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="product-footer">
+        <div class="container">
+            <p>MISO is a QuietTools project by Darien Bathalter</p>
+            <p>&copy; 2025 QuietTools • <a href="../index.html" style="color: #f4c430; text-decoration: none;">Back to QuietTools</a></p>
+        </div>
+    </footer>
+</body>
+</html> 
