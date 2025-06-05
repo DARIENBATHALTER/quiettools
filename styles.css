@@ -959,6 +959,7 @@ body {
     
     .tool-text {
         grid-area: text;
+        text-align: center;
     }
     
     .tool-leading-image {
