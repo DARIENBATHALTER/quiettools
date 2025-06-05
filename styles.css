@@ -959,19 +959,7 @@ body {
     
     .tool-text {
         grid-area: text;
-        text-align: center;
-    }
-    
-    .tool-title {
-        text-align: center;
-    }
-    
-    .tool-subtitle {
-        text-align: center;
-    }
-    
-    .tool-description {
-        text-align: center;
+        padding: 0 var(--spacing-md);
     }
     
     .tool-leading-image {
