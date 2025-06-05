@@ -962,6 +962,18 @@ body {
         text-align: center;
     }
     
+    .tool-title {
+        text-align: center;
+    }
+    
+    .tool-subtitle {
+        text-align: center;
+    }
+    
+    .tool-description {
+        text-align: center;
+    }
+    
     .tool-leading-image {
         grid-area: image;
         width: 250px;
