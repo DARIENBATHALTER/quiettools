@@ -382,9 +382,11 @@ body {
 
 /* Tools Section */
 .tool {
-    margin-bottom: var(--spacing-md);
-    padding-bottom: var(--spacing-md);
+    padding: calc(var(--spacing-xl) * 1.5) 0;
     border-bottom: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .tool:last-child {
@@ -442,14 +444,14 @@ body {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     gap: var(--spacing-xl);
-    align-items: start;
+    align-items: center;
 }
 
 .tool-content {
     display: grid;
     grid-template-columns: 2fr auto;
     gap: var(--spacing-md);
-    align-items: start;
+    align-items: center;
 }
 
 
@@ -951,8 +953,8 @@ body {
         grid-template-columns: 1fr;
         gap: var(--spacing-lg);
         grid-template-areas: 
-            "text"
-            "image";
+            "image"
+            "text";
     }
     
     .tool-text {
@@ -964,7 +966,8 @@ body {
         width: 250px;
         height: 150px;
         justify-self: center;
-        margin-top: var(--spacing-lg);
+        margin-bottom: var(--spacing-md);
+        margin-top: 0;
     }
     
     .tool-media {
