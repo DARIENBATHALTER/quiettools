@@ -131,11 +131,16 @@ function initializeScrollEffects() {
         observer.observe(el);
     });
     
-    // Parallax effect for hero section
+    // Parallax effect for hero section (disabled on mobile)
     const hero = document.querySelector('.hero');
     const heroContent = document.querySelector('.hero-content');
     
     window.addEventListener('scroll', () => {
+        // Disable parallax on mobile to prevent layout issues
+        if (window.innerWidth <= 768) {
+            return;
+        }
+        
         const scrolled = window.pageYOffset;
         const heroHeight = hero.offsetHeight;
         const scrollPercent = scrolled / heroHeight;
