@@ -198,8 +198,14 @@
             border-radius: 12px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             transition: transform 0.5s ease;
-            margin: 0 auto;
-            display: block;
+        }
+        
+        .use-case-icon-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50%;
+            height: 200px;
         }
         
         .use-case-image:hover {
@@ -377,6 +383,12 @@
                 max-width: 80%;
                 margin: 0 auto;
             }
+            
+            .use-case-icon-container {
+                width: 100%;
+                height: 150px;
+                margin: 20px 0;
+            }
         }
         
         @media (max-width: 768px) {
@@ -469,14 +481,6 @@
                 
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-bell"></i>
-                    </div>
-                    <h3 class="feature-heading">Automated Alerts</h3>
-                    <p>Get notified when inventory drops below custom thresholds or when items approach expiration dates.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
                         <i class="fas fa-chart-pie"></i>
                     </div>
                     <h3 class="feature-heading">Usage Analytics</h3>
@@ -497,11 +501,15 @@
                     <h3 class="use-case-title">K-12 Schools of All Sizes</h3>
                     <p class="use-case-text">From IT equipment to classroom supplies, MISO helps schools track their assets and manage resource allocation efficiently. Easily manage textbooks, technology, and equipment with a simple scanning system that staff can learn in minutes.</p>
                 </div>
-                <img src="../images/InventoryScanner2.jpeg" alt="School Inventory Management" class="use-case-image">
+                <div class="use-case-icon-container">
+                    <i class="fas fa-school" style="font-size: 8rem; color: #ef4444; opacity: 0.8;"></i>
+                </div>
             </div>
             
             <div class="use-case-container">
-                <img src="../images/InventoryScanner3.jpeg" alt="Small Business Inventory" class="use-case-image">
+                <div class="use-case-icon-container">
+                    <i class="fas fa-building" style="font-size: 8rem; color: #ef4444; opacity: 0.8;"></i>
+                </div>
                 <div class="use-case-content">
                     <h3 class="use-case-title">Small Businesses</h3>
                     <p class="use-case-text">Retail shops, restaurants, and service businesses use MISO to manage inventory without the overhead of complex systems. Keep track of stock levels, automate reordering, and understand your inventory flow with intuitive analytics.</p>
