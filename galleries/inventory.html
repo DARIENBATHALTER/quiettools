@@ -200,12 +200,54 @@
             transition: transform 0.5s ease;
         }
         
-        .use-case-icon-container {
+        /* Help Items Styling */
+        .help-rows {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50%;
-            height: 200px;
+            flex-direction: column;
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .help-row {
+            display: grid;
+            gap: 40px;
+        }
+        
+        .help-row-top {
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .help-item {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .help-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .help-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .help-item h3 {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .help-item p {
+            color: #5e7a7a;
+            line-height: 1.7;
+            font-size: 1rem;
         }
         
         .use-case-image:hover {
@@ -384,10 +426,8 @@
                 margin: 0 auto;
             }
             
-            .use-case-icon-container {
-                width: 100%;
-                height: 150px;
-                margin: 20px 0;
+            .help-row-top {
+                grid-template-columns: 1fr;
             }
         }
         
@@ -496,23 +536,18 @@
             <h2 class="section-heading">Who Uses MISO</h2>
             <p class="lead-text">Perfect for organizations that need professional inventory tracking without enterprise complexity.</p>
             
-            <div class="use-case-container">
-                <div class="use-case-content">
-                    <h3 class="use-case-title">K-12 Schools of All Sizes</h3>
-                    <p class="use-case-text">From IT equipment to classroom supplies, MISO helps schools track their assets and manage resource allocation efficiently. Easily manage textbooks, technology, and equipment with a simple scanning system that staff can learn in minutes.</p>
-                </div>
-                <div class="use-case-icon-container">
-                    <i class="fas fa-school" style="font-size: 8rem; color: #ef4444; opacity: 0.8;"></i>
-                </div>
-            </div>
-            
-            <div class="use-case-container">
-                <div class="use-case-icon-container">
-                    <i class="fas fa-building" style="font-size: 8rem; color: #ef4444; opacity: 0.8;"></i>
-                </div>
-                <div class="use-case-content">
-                    <h3 class="use-case-title">Small Businesses</h3>
-                    <p class="use-case-text">Retail shops, restaurants, and service businesses use MISO to manage inventory without the overhead of complex systems. Keep track of stock levels, automate reordering, and understand your inventory flow with intuitive analytics.</p>
+            <div class="help-rows">
+                <div class="help-row help-row-top">
+                    <div class="help-item">
+                        <i class="fas fa-school help-icon" style="color: #ef4444;"></i>
+                        <h3>K-12 Schools of All Sizes</h3>
+                        <p>From IT equipment to classroom supplies, MISO helps schools track their assets and manage resource allocation efficiently. Easily manage textbooks, technology, and equipment with a simple scanning system that staff can learn in minutes.</p>
+                    </div>
+                    <div class="help-item">
+                        <i class="fas fa-building help-icon" style="color: #ef4444;"></i>
+                        <h3>Small Businesses</h3>
+                        <p>Retail shops, restaurants, and service businesses use MISO to manage inventory without the overhead of complex systems. Keep track of stock levels, automate reordering, and understand your inventory flow with intuitive analytics.</p>
+                    </div>
                 </div>
             </div>
         </div>
