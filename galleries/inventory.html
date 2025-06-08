@@ -460,6 +460,41 @@
                 font-size: 1.1rem;
             }
         }
+        
+        /* Video CTA Ribbon */
+        .video-cta-ribbon {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: linear-gradient(135deg, #f4c430, #e6b02d);
+            color: #2c3e50;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(244, 196, 48, 0.3);
+            transform: rotate(5deg);
+            z-index: 10;
+            white-space: nowrap;
+            animation: gentle-pulse 2s ease-in-out infinite;
+            border: 2px solid white;
+        }
+
+        .video-cta-ribbon i {
+            margin-right: 6px;
+            font-size: 0.8rem;
+        }
+
+        @keyframes gentle-pulse {
+            0%, 100% {
+                transform: rotate(5deg) scale(1);
+                box-shadow: 0 4px 12px rgba(244, 196, 48, 0.3);
+            }
+            50% {
+                transform: rotate(5deg) scale(1.05);
+                box-shadow: 0 6px 16px rgba(244, 196, 48, 0.4);
+            }
+        }
     </style>
 </head>
 <body>
@@ -474,15 +509,19 @@
                 <div class="hero-text">
                     <div class="super-title">Mobile Inventory Scanner</div>
                     <h1 class="hero-heading">MISO</h1>
-                    <p class="lead-text">Turn any smartphone into a powerful inventory management system with zero complexity.</p>
-                    <p class="body-text">The Mobile Inventory Scanner & Organizer (MISO) transforms how schools, small businesses, and organizations manage their assets and inventory with professional-grade features in an intuitive mobile experience.</p>
+                    <p class="lead-text">Cut inventory time by 80% and eliminate manual errors with zero complexity.</p>
+                    <p class="body-text">The Mobile Inventory Scanner & Organizer (MISO) transforms how schools, small businesses, and organizations manage their assets and inventory with enterprise-grade features in an intuitive mobile experience.</p>
                 </div>
-                <div class="hero-image-container">
+                <div class="hero-image-container" style="position: relative;">
                                 <video controls loop muted class="hero-image" style="width: 100%; max-width: 300px; margin: 0 auto; display: block;">
                 <source src="../images/MISOSnippet.mov" type="video/quicktime">
                 <source src="../images/MISOSnippet.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
+                            <div class="video-cta-ribbon">
+                                <i class="fas fa-play"></i>
+                                Press play to see MISO in action!
+                            </div>
                 </div>
             </div>
         </div>
@@ -562,17 +601,17 @@
             <div class="showcase-grid">
                 <div class="showcase-item">
                     <img src="../images/InventoryScanner1.jpeg" alt="MISO Main Interface" onclick="window.open(this.src, '_blank')">
-                    <div class="showcase-caption">Main scanner interface with quick-access actions</div>
+                    <div class="showcase-caption">Main scanner interface with quick-access actions, including damage reporting.</div>
                 </div>
                 
                 <div class="showcase-item">
                     <img src="../images/InventoryScanner2.jpeg" alt="Barcode Scanning" onclick="window.open(this.src, '_blank')">
-                    <div class="showcase-caption">Barcode scanning with real-time information overlay</div>
+                    <div class="showcase-caption">MISO can use optical character recognition, direct barcode scanning, or manual entry for bulletproof inventory tracking.</div>
                 </div>
                 
                 <div class="showcase-item">
                     <img src="../images/InventoryScanner3.jpeg" alt="Inventory Dashboard" onclick="window.open(this.src, '_blank')">
-                    <div class="showcase-caption">Inventory dashboard with status indicators</div>
+                    <div class="showcase-caption">Customized inventory management including location tracking and device assignment.</div>
                 </div>
             </div>
         </div>
@@ -594,9 +633,9 @@
     <!-- Call to Action -->
     <section class="cta-section">
         <div class="container">
-            <h2 class="cta-heading">Ready to simplify your inventory management?</h2>
-            <p class="cta-text">Discover how MISO can help your organization track assets and inventory with professional tools that don't require an IT department to manage.</p>
-            <a href="../index.html#contact" class="cta-button">Contact Us</a>
+            <h2 class="cta-heading">Ready to cut your inventory time by 80%?</h2>
+            <p class="cta-text">Discover how MISO can help your organization track assets and inventory with enterprise-grade tools that don't require an IT department to manage.</p>
+            <a href="../index.html#contact" class="cta-button">Get Your Custom Tool in 2 Weeks</a>
         </div>
     </section>
     
