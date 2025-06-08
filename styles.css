@@ -538,6 +538,33 @@ body {
     opacity: 1;
 }
 
+/* Learn More Button */
+.tool-learn-more {
+    grid-column: 2;
+    display: flex;
+    justify-content: center;
+    margin-top: var(--spacing-sm);
+}
+
+.learn-more-button {
+    display: inline-block;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: var(--color-primary);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--border-radius-md);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.learn-more-button:hover {
+    background: var(--color-accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
 .tool-media-section {
     grid-column: 1 / -1;
     margin-top: var(--spacing-xs);
@@ -969,6 +996,13 @@ body {
         justify-self: center;
         margin-bottom: var(--spacing-md);
         margin-top: 0;
+    }
+    
+    .tool-learn-more {
+        grid-area: image;
+        justify-self: center;
+        margin-top: var(--spacing-sm);
+        margin-bottom: 0;
     }
     
     .tool-media {
