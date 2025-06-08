@@ -806,8 +806,8 @@ body {
 
 /* Service Icons */
 .service-icon {
-    text-align: center;
-    margin-bottom: var(--spacing-md);
+    text-align: left;
+    margin-bottom: var(--spacing-sm);
 }
 
 .service-icon i {
@@ -817,11 +817,11 @@ body {
 
 /* Rapid Tools Workshop Styling */
 .service.rapid-tools {
-    border: 2px solid #9CAF88;
+    border: 2px solid #00D4AA;
 }
 
 .service.rapid-tools .service-icon i {
-    color: #9CAF88;
+    color: #00D4AA;
 }
 
 /* Book Call Link */
