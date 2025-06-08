@@ -543,18 +543,18 @@ body {
     grid-column: 2;
     display: flex;
     justify-content: center;
-    margin-top: var(--spacing-sm);
+    margin-top: var(--spacing-xs);
 }
 
 .learn-more-button {
     display: inline-block;
-    padding: var(--spacing-sm) var(--spacing-lg);
+    padding: var(--spacing-xs) var(--spacing-md);
     background: var(--color-primary);
     color: white;
     text-decoration: none;
-    border-radius: var(--border-radius-md);
+    border-radius: 20px;
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     transition: all 0.3s ease;
     box-shadow: var(--shadow-sm);
 }
@@ -1001,7 +1001,7 @@ body {
     .tool-learn-more {
         grid-area: image;
         justify-self: center;
-        margin-top: var(--spacing-sm);
+        margin-top: var(--spacing-xs);
         margin-bottom: 0;
     }
     
